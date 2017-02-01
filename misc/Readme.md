@@ -1,2 +1,2 @@
 ## A directory for misellaneous stuff. 
-Nothing really relevant should be here!
+Miscellaneous files or folder or others belong to Kar Chan, on GitHub account chank1996.

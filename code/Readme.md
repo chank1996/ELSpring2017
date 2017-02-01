@@ -1,2 +1,2 @@
 # Code Directory. 
-All your code should go here. Make sure files are named as explicitly as possible.
+File for codes made by Kar Chan, on GitHub account chank1996.
