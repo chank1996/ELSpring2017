@@ -3,6 +3,7 @@ import os
 import time
 import sqlite3 as mydb 
 
+#read the temperature fromsensor
 def readTemp():
 	tempfile = open("/sys/bus/w1/devices/28-000006979949/w1_slave")
 	tempfile_text = tempfile.read()
@@ -12,6 +13,7 @@ def readTemp():
 	tempF = tempC*9.0/5.0 + 32.0
 	return [currentTime, tempC, tempF]
 
+#logs the temperature after reading with readTemp()
 def logTemp():
 	con = mydb.connect('/home/pi/Databases/temp.db')
 	with con:
@@ -24,6 +26,7 @@ def logTemp():
 		except:
 			print "Error"
 
+#logs temperature every 30 seconds for ten minutes
 def tempTimer():
 	x = 0.0
 	while True:
