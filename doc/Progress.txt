@@ -1,0 +1,13 @@
+1. Project: Camera that can be pointed in any direction from the ground with servos controlled by a web interface.
+
+2. Work done so far: Soldering, wiring, connecting the camera to a boom, connecting the boom to a servo, putting the servos together, progress on the front-end webpage, and progress towards the back-end control
+
+3. Work that needs to be done in the next 3 weeks: Finishing of the front-end and back-end of the web control application, attaching everything to a solid base
+
+4. Contribution of each partner:
+	Kurt:
+		Done: Soldering, wiring, connecting the camera to a boom, connecting the boom to a servo, putting the servos together, code testing
+		Future: Attaching everything to a base, help with the web control front-end and back-end, code testing
+	Kar:
+		Done: Progress on the front-end webpage, progress towards the back-end control, code testing
+Future: Finishing the web control front-end and back-end, code testing
