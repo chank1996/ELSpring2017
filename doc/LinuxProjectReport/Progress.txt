@@ -1,8 +1,13 @@
-1. The project described is to make a camera that can look in any direction, and be able to take a picture. This camera can be controlled from a website, where pictures can also be displayed.
+1. Project: Camera that can be pointed in any direction from the ground with servos controlled by a web interface.
 
-2. Kurt - Sodered and built the camera device, tested code to be used for camera control, double-checked html code for website
-   Kar - typed html code for front-end of webstite, research and work on creating a server for back-end of website, helped a bit in camera code testing.
+2. Work done so far: Soldering, wiring, connecting the camera to a boom, connecting the boom to a servo, putting the servos together, progress on the front-end webpage, and progress towards the back-end control
 
-3. Work that still needs to be done would be to finalize the camera code, finish up the website, create controls that browser can use to move the camera on the website, create gallery
+3. Work that needs to be done in the next 3 weeks: Finishing of the front-end and back-end of the web control application, attaching everything to a solid base
 
-4. Kurt will be finishing up the camera control code as well as tweaking the design of the device. Kar will be working on the website and gallery.   
+4. Contribution of each partner:
+	Kurt:
+		Done: Soldering, wiring, connecting the camera to a boom, connecting the boom to a servo, putting the servos together, code testing
+		Future: Attaching everything to a base, help with the web control front-end and back-end, code testing
+	Kar:
+		Done: Progress on the front-end webpage, progress towards the back-end control, code testing
+Future: Finishing the web control front-end and back-end, code testing
