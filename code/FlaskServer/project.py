@@ -6,7 +6,7 @@ app = Flask(__name__)
 def interface():
 	return render_template('LinuxProject.html')
 
-@app.route('/gallery')
+@app.route('/gallery/')
 def gallery():
 	return render_template('Gallery.html')
 
