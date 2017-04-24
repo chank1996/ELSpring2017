@@ -2,50 +2,70 @@
 <html>
 <head>
 <title>Linux Project 360 Camera </title>
-</head>
-<body>
-
-<h1>Kurt and Kar: Real-Time Moving Camera</h1>
-<p>Take pictures of the surrounding area using the arrows and button</p>
-
-<div class = "gallery">
-<h1> Gallery </h1>
-<p> contains images from past captures <p>
-<p><a href="/gallery/">Go To Gallery</a></p>
-</div>
-
-<div class = "cameraView">
-	<p>Enter degree/angle numbers for camera direction:</p>
-</div>
-
-<form id="degreeNumbers" action="/something.php">
-  Vertical Degree: <input type="number" name="vdegree"><br>
-  Horizontal Degree: <input type="number" name="hdegree"><br><br>
-  <input type="button" onclick="myFunction()" value="Take Picture">
-</form>
-
-</body>
-
-<script>
-function myFunction() {
-    document.getElementById("degreeNumbers").submit();
-}
-</script>
-	
+<script src=static/jquery.js></script>
 <style>
 
-div.gallery{
-	background-color:red;
-    color: black;
-    margin: 20px 0 20px 0;
-    padding: 10px;
-    }
-    
 div.cameraView{
 	text.align:center;
    	display:block
     }
 
 </style>
+<body>
+
+<h1>Kurt and Kar: Real-Time Moving Camera</h1>
+<p>Take pictures of the surrounding area using the arrows and button</p>
+<hr>
+<a href="/gallery/">Go To Gallery</a>
+<hr>
+
+<div id=mainPicture>
+	<img id=imgMainPicture width=640 height=480 src="/latest_picture">
+</div>
+
+<div class = "cameraView">
+	<p>Enter degree/angle numbers for camera direction:</p>
+</div>
+
+
+
+<br>
+
+<form onsubmit="submitted()" id="degreeNumbers" action="/take_picture" method="get">
+  Vertical Degree: <input type="number" id="input_pitch" name="pitch"><br>
+  Horizontal Degree: <input type="number" id="input_yaw" name="yaw"><br><br>
+  <input type="submit" value="Take Picture">
+</form>
+
+</body>
+
+<script>
+// https://www.sitepoint.com/url-parameters-jquery/
+$.urlParam = function(name){
+	try{
+		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		return results[1] || 0;
+	} catch(e) {
+		return undefined;
+	}
+}
+
+function submitted(){
+	
+}
+
+var pitch = $.urlParam('pitch');
+var yaw = $.urlParam('yaw');
+
+if (pitch == undefined)
+	pitch = 0;
+if (yaw == undefined)
+	yaw = 0;
+
+$("#input_pitch").val(pitch);
+$("#input_yaw").val(yaw);
+
+</script>
+	
 
 </html>

@@ -1,12 +1,19 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <title> Linux Project Gallery </title>
 </head>
 <body>
-
   <h1>Gallery</h1>
   <p> Viewing of previously taken pictures<p>
   <p><a href="/">Return to Camera</a></p>
+  <hr>
+  {%- for item in images: -%}
+	<a href="/static/images/{{item}}">
+		<img src="/static/images/{{item}}" width=560 height=350>
+	</a>
+  {%- endfor -%}
+
  </body>
 </html>
