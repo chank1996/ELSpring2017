@@ -11,21 +11,27 @@
 <div class = "gallery">
 <h1> Gallery </h1>
 <p> contains images from past captures <p>
+<p><a href="/gallery/">Go To Gallery</a></p>
 </div>
 
 <div class = "cameraView">
-     
-<p>Enter degree/angle numbers for camera direction:</p>
+	<p>Enter degree/angle numbers for camera direction:</p>
+</div>
 
 <form id="degreeNumbers" action="/something.php">
   Vertical Degree: <input type="number" name="vdegree"><br>
   Horizontal Degree: <input type="number" name="hdegree"><br><br>
   <input type="button" onclick="myFunction()" value="Take Picture">
 </form>
-	
-</body>
-</html>
 
+</body>
+
+<script>
+function myFunction() {
+    document.getElementById("degreeNumbers").submit();
+}
+</script>
+	
 <style>
 
 div.gallery{
@@ -41,3 +47,5 @@ div.cameraView{
     }
 
 </style>
+
+</html>
