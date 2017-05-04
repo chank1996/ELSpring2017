@@ -63,10 +63,12 @@ def take_picture():
         return "error"
     originalYaw = yaw
     originalPitch = pitch
-    
+
+    vflip = True
     if yaw > 180:
         yaw -= 180
         pitch = 180 - pitch
+        vflip = False
 
     setDegree(0, yaw)
     setDegree(3, pitch)
@@ -75,20 +77,20 @@ def take_picture():
 
     latest = timestamp()+".jpg"
     camera = picamera.PiCamera()
+    camera.vflip = vflip
+    camera.hflip = vflip
     fn = "static/images/"+latest
     camera.capture(fn)
     camera.close()
-
     img = Image.open(fn)
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("FreeSans.ttf", 32)
+    font = ImageFont.truetype("font.ttf", 32)
     draw.rectangle([0, 0, 350, 70], (0,0,0))
     draw.text((0, 0), "Horizontal: " + str(originalYaw) + " degrees", font=font)
     draw.text((0, 32), "Vertical: " + str(originalPitch) + " degrees", font=font)
     img.save(fn)
     
-    return redirect("/?pitch="+str(pitch)+"&yaw="+str(yaw))
+    return redirect("/?pitch="+str(originalPitch)+"&yaw="+str(originalYaw))
 
 if __name__ == '__main__':
-        app.debug = True
 	app.run(host = '0.0.0.0', port = 5000, debug = True)

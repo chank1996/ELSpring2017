@@ -4,19 +4,40 @@
 <title>Linux Project 360 Camera </title>
 <script src=static/jquery.js></script>
 <style>
+body{
+	text-align: center;
+}
 
 div.cameraView{
 	text.align:center;
    	display:block
-    }
+}
+
+#galleryLink{
+	text-align: left;
+}
+
+#left, #right {
+	width: 40%;
+	display: inline-block;
+	vertical-align: top;
+}
+#left{
+	text-align: right;
+}
+#right{
+	text-align: left;
+}
 
 </style>
 <body>
 
-<h1>Kurt and Kar: Real-Time Moving Camera</h1>
-<p>Take pictures of the surrounding area using the arrows and button</p>
+<h1>Kurt and Kar: Moving Camera</h1>
+<p>Take pictures of the surrounding area by inputting degrees and pressing the button</p>
 <hr>
-<a href="/gallery/">Go To Gallery</a>
+<div id=galleryLink>
+	<a href="/gallery/">Go To Gallery</a>
+</div>
 <hr>
 
 <div id=mainPicture>
@@ -31,11 +52,23 @@ div.cameraView{
 
 <br>
 
+<div>
+
+<span id=left>
+
 <form onsubmit="submitted()" id="degreeNumbers" action="/take_picture" method="get">
   Vertical Degree: <input type="number" id="input_pitch" name="pitch"><br>
   Horizontal Degree: <input type="number" id="input_yaw" name="yaw"><br><br>
   <input type="submit" value="Take Picture">
 </form>
+
+</span>
+<span id=right>
+	<canvas id=cnvYaw width=100 height=100></canvas>
+	<canvas id=cnvPitch width=40 height=100></canvas>
+</span>
+
+</div>
 
 </body>
 
@@ -64,6 +97,61 @@ if (yaw == undefined)
 
 $("#input_pitch").val(pitch);
 $("#input_yaw").val(yaw);
+
+var cnvYaw = $("#cnvYaw")[0]
+var ctxYaw = cnvYaw.getContext("2d")
+ctxYaw.strokeStyle = "#ff0000"
+ctxYaw.beginPath()
+ctxYaw.moveTo(50, 0)
+ctxYaw.lineTo(50, 100)
+ctxYaw.moveTo(0, 50)
+ctxYaw.lineTo(100, 50)
+ctxYaw.stroke()
+
+var cnvPitch = $("#cnvPitch")[0]
+var ctxPitch = cnvPitch.getContext("2d")
+ctxPitch.strokeStyle = "#ff0000"
+for (var i = 0; i < 10; i++){
+	var y = 5 + parseInt(100.0 * i/10.0)
+	ctxPitch.moveTo(0, y)
+	ctxPitch.lineTo(20, y)
+}
+ctxPitch.stroke()
+
+ctxPitch.font = "12px Arial"
+ctxPitch.fillText("0", 20, 100)
+ctxPitch.fillText("90", 20, 10)
+
+function relPos(self, e){
+	var po = $(self).parent().offset()
+	return {
+		x : e.pageX - po.left,
+		y : e.pageY - po.top
+	}
+}
+
+$("#cnvPitch").click(function(e){
+	var pos = relPos(this, e)
+	var pitch = parseInt(90 - (pos.y - 5))
+	if (pitch < 0)
+		pitch = 0;
+	if (pitch > 90)
+		pitch = 90;
+	$("#input_pitch").val(pitch)
+})
+
+$("#cnvYaw").click(function(e){
+	var pos = relPos(this, e)
+	var y = 50 - pos.y;
+	var x = pos.x - 50; 
+	console.log(x + "," + y)
+	var rad = Math.atan2(y, x)
+	var deg = rad * 360.0 / (2*Math.PI)
+	if (deg < 0)
+		deg += 360
+	$("#input_yaw").val(parseInt(deg))
+	
+})
 
 </script>
 	
