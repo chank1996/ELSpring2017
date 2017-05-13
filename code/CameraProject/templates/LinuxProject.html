@@ -8,27 +8,27 @@ body{
 	text-align: center;
 }
 
-div.cameraView{
-	text.align:center;
-   	display:block
-}
-
 #galleryLink{
 	text-align: left;
 }
 
-#left, #right {
-	width: 40%;
-	display: inline-block;
-	vertical-align: top;
-}
 #left{
-	text-align: right;
-}
-#right{
 	text-align: left;
 }
-
+#right{
+	text-align: right;
+}
+#mainTable{
+	margin: 0 auto;
+}
+form{
+	text-align: left;
+}
+input[type="submit"]{
+	width: 100%;
+	border: 1px solid;
+	border-color: rgb(171, 173, 179);
+}
 </style>
 <body>
 
@@ -40,35 +40,49 @@ div.cameraView{
 </div>
 <hr>
 
-<div id=mainPicture>
-	<img id=imgMainPicture width=640 height=480 src="/latest_picture">
-</div>
+<table id=mainTable>
+	<tr>
+		<td colspan=2>
+			<div id=mainPicture>
+				<img id=imgMainPicture width=640 height=480 src="/latest_picture">
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td id=left>
+			<form onsubmit="submitted()" id="degreeNumbers" action="/take_picture" method="get">
+				<table>
+					<tr>
+						<td>
+							Vertical Degree:
+						</td>
+						<td>
+							<input type="number" id="input_pitch" name="pitch">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Horizontal Degree:
+						</td>
+						<td>
+							<input type="number" id="input_yaw" name="yaw">
+						</td>
+					</tr>
+					<tr>
+						<td colspan=2>
+							<input type="submit" value="Take Picture">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</td>
+		<td id=right>
+			<canvas id=cnvYaw width=100 height=100></canvas>
+			<canvas id=cnvPitch width=40 height=100></canvas>
+		</td>
+	</tr>
+</table>
 
-<div class = "cameraView">
-	<p>Enter degree/angle numbers for camera direction:</p>
-</div>
-
-
-
-<br>
-
-<div>
-
-<span id=left>
-
-<form onsubmit="submitted()" id="degreeNumbers" action="/take_picture" method="get">
-  Vertical Degree: <input type="number" id="input_pitch" name="pitch"><br>
-  Horizontal Degree: <input type="number" id="input_yaw" name="yaw"><br><br>
-  <input type="submit" value="Take Picture">
-</form>
-
-</span>
-<span id=right>
-	<canvas id=cnvYaw width=100 height=100></canvas>
-	<canvas id=cnvPitch width=40 height=100></canvas>
-</span>
-
-</div>
 
 </body>
 
